@@ -2,6 +2,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
 
 # Load emissions data
 df = pd.read_csv("Empreinte carbone anonymous 2023.csv")  # Columns: ['Year', 'Catégorie Bilan Carbone', 'Sous-Catégorie Bilan Carbone', 'ModelID', 'GHG Emissions (kgCO2e)']
@@ -31,7 +32,7 @@ fig = px.bar(
     labels={"GHG Emissions (kgCO2e)": "Emissions (kgCO2e)"},
 )
 fig.update_layout(barmode='stack')
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig)
 
 # Treemap: Category > Subcategory > ModelID
 st.subheader("Drill-down Treemap: Category → Subcategory → ModelID")
@@ -41,29 +42,28 @@ fig_treemap = px.treemap(
     values="GHG Emissions (kgCO2e)",
     title="Hierarchical View of Emissions",
 )
-st.plotly_chart(fig_treemap, use_container_width=True)
+st.plotly_chart(fig_treemap)
 
-# Area Chart: Impact of Decarbonization Actions over Time
-st.subheader("GHG Emissions Reduction Over Time")
-fig_area = px.area(
-    actions_df,
-    x="Year",
-    y="GHG Emissions reduction compared to no action (kgCO2e)",
-    color="Solution",
-    title="GHG Emissions Reduction Compared to No Action by Year and Solution",
-    labels={"GHG Emissions reduction compared to no action (kgCO2e)": "GHG Emissions Reduction (kgCO2e)"},
+# Waterfall Chart: Impact of Decarbonization Actions
+st.subheader("Decarbonization Impact by 2030")
+actions_2030 = actions_df[actions_df['Year'] == 2030]
+
+data = [
+    go.Waterfall(
+        name="GHG Reduction Actions",
+        orientation="v",
+        measure=["absolute"] + ["relative"] * (len(actions_2030) - 1) + ["absolute"],
+        x=["Baseline Emissions"] + actions_2030["Solution"].tolist() + ["Projected Emissions"],
+        y=[0] + actions_2030["GHG Emissions reduction compared to no action (kgCO2e)"].tolist() + [sum(actions_2030["GHG Emissions reduction compared to no action (kgCO2e)"])],
+        textposition="outside",
+        connector=dict(line=dict(color="rgb(63, 63, 63)"))
+    )
+]
+
+fig_waterfall = go.Figure(data)
+fig_waterfall.update_layout(
+    title="GHG Reduction from Actions (2030)",
+    xaxis_title="Actions",
+    yaxis_title="Emissions Reduction (kgCO2e)",
 )
-fig_area.update_layout(
-    autosize=True,
-    margin=dict(l=10, r=10, t=40, b=40),  # Reduce margins for better mobile view
-    legend=dict(
-        orientation="h",  # Horizontal legend for mobile-friendliness
-        yanchor="bottom",
-        y=-0.4,
-        xanchor="center",
-        x=0.5
-    ),
-    xaxis=dict(title_text="Year", tickangle=-45),  # Tilt labels for better visibility
-    yaxis=dict(title_text="GHG Emissions Reduction (kgCO2e)", tickformat=".2s")  # Compact format for numbers
-)
-st.plotly_chart(fig_area, use_container_width=True)
+st.plotly_chart(fig_waterfall)
