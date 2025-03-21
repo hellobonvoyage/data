@@ -2,7 +2,6 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-import plotly.graph_objects as go
 
 # Load emissions data
 df = pd.read_csv("Empreinte carbone anonymous 2023.csv")  # Columns: ['Year', 'Catégorie Bilan Carbone', 'Sous-Catégorie Bilan Carbone', 'ModelID', 'GHG Emissions (kgCO2e)']
@@ -44,26 +43,14 @@ fig_treemap = px.treemap(
 )
 st.plotly_chart(fig_treemap)
 
-# Waterfall Chart: Impact of Decarbonization Actions
-st.subheader("Decarbonization Impact by 2030")
-actions_2030 = actions_df[actions_df['Year'] == 2030]
-
-data = [
-    go.Waterfall(
-        name="GHG Reduction Actions",
-        orientation="v",
-        measure=["absolute"] + ["relative"] * (len(actions_2030) - 1) + ["absolute"],
-        x=["Baseline Emissions"] + actions_2030["Solution"].tolist() + ["Projected Emissions"],
-        y=[0] + actions_2030["GHG Emissions reduction compared to no action (kgCO2e)"].tolist() + [sum(actions_2030["GHG Emissions reduction compared to no action (kgCO2e)"])],
-        textposition="outside",
-        connector=dict(line=dict(color="rgb(63, 63, 63)"))
-    )
-]
-
-fig_waterfall = go.Figure(data)
-fig_waterfall.update_layout(
-    title="GHG Reduction from Actions (2030)",
-    xaxis_title="Actions",
-    yaxis_title="Emissions Reduction (kgCO2e)",
+# Area Chart: Impact of Decarbonization Actions over Time
+st.subheader("GHG Emissions Reduction Over Time")
+fig_area = px.area(
+    actions_df,
+    x="Year",
+    y="GHG Emissions reduction compared to no action (kgCO2e)",
+    color="Solution",
+    title="GHG Emissions Reduction Compared to No Action by Year and Solution",
+    labels={"GHG Emissions reduction compared to no action (kgCO2e)": "GHG Emissions Reduction (kgCO2e)"},
 )
-st.plotly_chart(fig_waterfall)
+st.plotly_chart(fig_area)
