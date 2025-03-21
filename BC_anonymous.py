@@ -31,7 +31,7 @@ fig = px.bar(
     labels={"GHG Emissions (kgCO2e)": "Emissions (kgCO2e)"},
 )
 fig.update_layout(barmode='stack')
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 # Treemap: Category > Subcategory > ModelID
 st.subheader("Drill-down Treemap: Category → Subcategory → ModelID")
@@ -41,7 +41,7 @@ fig_treemap = px.treemap(
     values="GHG Emissions (kgCO2e)",
     title="Hierarchical View of Emissions",
 )
-st.plotly_chart(fig_treemap)
+st.plotly_chart(fig_treemap, use_container_width=True)
 
 # Area Chart: Impact of Decarbonization Actions over Time
 st.subheader("GHG Emissions Reduction Over Time")
@@ -53,4 +53,17 @@ fig_area = px.area(
     title="GHG Emissions Reduction Compared to No Action by Year and Solution",
     labels={"GHG Emissions reduction compared to no action (kgCO2e)": "GHG Emissions Reduction (kgCO2e)"},
 )
-st.plotly_chart(fig_area)
+fig_area.update_layout(
+    autosize=True,
+    margin=dict(l=10, r=10, t=40, b=40),  # Reduce margins for better mobile view
+    legend=dict(
+        orientation="h",  # Horizontal legend for mobile-friendliness
+        yanchor="bottom",
+        y=-0.4,
+        xanchor="center",
+        x=0.5
+    ),
+    xaxis=dict(title_text="Year", tickangle=-45),  # Tilt labels for better visibility
+    yaxis=dict(title_text="GHG Emissions Reduction (kgCO2e)", tickformat=".2s")  # Compact format for numbers
+)
+st.plotly_chart(fig_area, use_container_width=True)
