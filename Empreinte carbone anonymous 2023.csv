@@ -1,0 +1,43 @@
+﻿Year,Catégorie Bilan Carbone,Sous-Catégorie Bilan Carbone,ModelID,Measured values,GHG Emissions (kgCO2e),EF,Unité_français,Incertitude totale (%),Inflation coeff,Year
+2023,Intrants - services,Achats de services,Maintenance - Informatique,103753,9493,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Intrants - services,Achats de services,Achats Etudes/prestations serv,52625,7442,170,kgCO2e/keuro,81%,20.22%,2016
+2023,Déplacements,"Employés, voiture",Location - Véhicule LLD,8799,5123,700,kgCO2e/keuro,81%,20.22%,2016
+2023,Déplacements,"Employés, voiture",Carburant,849,2285,2.69,kgCO2e/litre,18%,0.00%,2021
+2023,Immobilisations,Bâtiments,Bâtiments de bureaux,2,1573,650,kgCO2e/m² SHON,52%,0.00%,2014
+2023,Immobilisations,Informatique,Ecrans,4,1091,248,kgCO2e/unité,52%,0.00%,2018
+2023,Déchets directs,Déchets organiques et ordures ménagères,Déchets divers,3,1042,386,kgCO2e/tonne de déchets,58%,0.00%,2021
+2023,Déplacements,"Employés, voiture",Entretien matériel de transport,3936,701,215,kgCO2e/keuro,36%,20.70%,2014
+2023,Intrants - services,Achats de services,Maintenance - Informatique ponctuel,6950,636,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Energie,Electricité achetée & produite,Consommation électrique bureaux Paris,11363,591,0.052,kgCO2e/kWh,18%,0.00%,2023
+2023,Intrants - services,Achats de services,Réceptions,1960,522,320,kgCO2e/keuro,81%,20.22%,2016
+2023,Intrants - services,Achats de services,Entretien des locaux,3563,504,170,kgCO2e/keuro,81%,20.22%,2016
+2023,Déplacements,"Employés, train",Train,74567,441,0.00592,kgCO2e/passager.km,25%,0.00%,2021
+2023,Immobilisations,Informatique,ordinateurs portables,2,343,156,kgCO2e/unité,52%,0.00%,2018
+2023,Intrants - biens et matières,Ratios monétaires,Petit matériel,902,331,0.367,kgCO2e/euro dépensé,52%,20.70%,2014
+2023,Intrants - services,Achats de services,Taxe apprentissage,2954,295,120,kgCO2e/keuro,81%,20.22%,2016
+2023,Hors énergie,Halocarbures de Kyoto,R32,0,244,677,,42%,0.00%,2015
+2023,Intrants - services,Achats de services,Internet - fibre,937,133,170,kgCO2e/keuro,81%,20.22%,2016
+2023,Immobilisations,"Véhicules, machines, mobilier",Chaises,4,123,34.4,kgCO2e/unité,18%,0.00%,2018
+2023,Déplacements,"Employés, voiture",Assurance - Véhicules LLD,1315,120,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Immobilisations,Informatique,Network Attached Storage (serveur),0,120,600,kgCO2e/appareil,81%,0.00%,2014
+2023,Energie,Electricité achetée & produite,Consommation électrique télétravail,2079,108,0.052,kgCO2e/kWh,32%,0.00%,2023
+2023,Utilisation,Electricité,Consommation électrique des ordinateurs servant à visionner les formations,1900,99,0.052,kgCO2e/kWh,18%,0.00%,2023
+2023,Intrants - services,Achats de services,Frais bancaires,960,88,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Immobilisations,"Véhicules, machines, mobilier",Canapés,0,77,179,kgCO2e/unité,21%,0.00%,2018
+2023,Immobilisations,"Véhicules, machines, mobilier",Bureaux,1,60,60.1,kgCO2e/unité,25%,0.00%,2018
+2023,Intrants - services,Achats de services,Assurance - Protection juridique,571,52,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Intrants - biens et matières,Ratios monétaires,Fournitures de bureau,124,46,0.367,kgCO2e/euro dépensé,52%,20.70%,2014
+2023,Intrants - services,Achats de services,Assurance - Multirisque entreprise,342,31,110,kgCO2e/keuro,81%,20.22%,2016
+2023,Intrants - services,Achats de services,Téléphone - Mobile,186,26,170,kgCO2e/keuro,81%,20.22%,2016
+2023,Déplacements,Domicile-travail,"Transports en commun (bus, métro, tramway)",2633,26,0.00978,kgCO2e/passager.km,25%,0.00%,2023
+2023,Immobilisations,"Véhicules, machines, mobilier",Micro-ondes,0,20,98.4,kgCO2e/unité,52%,0.00%,2018
+2023,Intrants - services,Achats de services,Cloud storage,1528,18,0.0116,kg CO2e/Go,42%,0.00%,
+2023,Immobilisations,Informatique,Imprimante,0,18,87.9,kgCO2e/unité,52%,0.00%,2018
+2023,Immobilisations,"Véhicules, machines, mobilier",Frigo,0,18,87.6,kgCO2e/unité,34%,0.00%,2018
+2023,Immobilisations,"Véhicules, machines, mobilier",Tables,0,17,60.1,kgCO2e/unité,25%,0.00%,2018
+2023,Utilisation,Electricité,Energie pour le transfert de donnée pendant le visionnage des formations,321,17,0.052,kgCO2e/kWh,51%,0.00%,2023
+2023,Immobilisations,Informatique,Smartphones,1,17,16.5,kgCO2e/unité,52%,0.00%,2018
+2023,Immobilisations,"Véhicules, machines, mobilier",Cafetière,0,5,22.5,kgCO2e/unité,52%,0.00%,2020
+2023,Intrants - services,Achats de services,Affranchissement,26,3,130,kgCO2e/keuro,81%,20.22%,2016
+2023,Déplacements,Domicile-travail,Scooter,22,2,0.0736,kgCO2e/km,62%,0.00%,2021
+2023,Hors énergie,Halocarbures de Kyoto,R600A,0,0,3.18,kg CO2e/kg,36%,0.00%,
