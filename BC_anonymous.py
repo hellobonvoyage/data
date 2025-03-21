@@ -3,9 +3,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-
 # Load your emissions data
-df = pd.read_csv("Empreinte carbone anonymous 2023.csv")  # Example: columns = ['Year', 'Category', 'Emissions_tCO2e']
+df = pd.read_csv("Empreinte carbone anonymous 2023.csv")  # Columns: ['Year', 'Catégorie Bilan Carbone', 'Sous-Catégorie Bilan Carbone', 'ModelID', 'GHG Emissions (kgCO2e)']
 
 # Sidebar filters
 year = st.sidebar.selectbox("Select Year", sorted(df['Year'].unique(), reverse=True))
@@ -19,7 +18,7 @@ st.title("GHG Emissions Dashboard")
 st.subheader(f"Total Emissions in {year}")
 st.metric(label="Total Emissions (tCO2e)", value=round(filtered_df['GHG Emissions (kgCO2e)'].sum(), 2))
 
-# Plot with subcategories
+# Bar chart: Emissions by Category and Subcategory
 fig = px.bar(
     filtered_df,
     x="Catégorie Bilan Carbone",
@@ -28,6 +27,18 @@ fig = px.bar(
     title="Emissions by Category and Subcategory",
     labels={"GHG Emissions (kgCO2e)": "Emissions (kgCO2e)"},
 )
-
-fig.update_layout(barmode='stack')  # or 'group' if you prefer grouped bars
+fig.update_layout(barmode='stack')  # or 'group'
 st.plotly_chart(fig)
+
+
+
+
+# Treemap: Category > Subcategory > ModelID
+st.subheader("Drill-down Treemap: Category → Subcategory → ModelID")
+fig_treemap = px.treemap(
+    filtered_df,
+    path=["Catégorie Bilan Carbone", "Sous-Catégorie Bilan Carbone", "ModelID"],
+    values="GHG Emissions (kgCO2e)",
+    title="Hierarchical View of Emissions",
+)
+st.plotly_chart(fig_treemap)
