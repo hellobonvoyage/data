@@ -1,3 +1,5 @@
 pandas
 streamlit
 plotly
+streamlit_authenticator
+plotly.graph_objects
