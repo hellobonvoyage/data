@@ -1,9 +1,19 @@
 # %%
-import pandas as pd
 import streamlit as st
-import plotly.express as px
 import streamlit_authenticator as stauth
 import plotly.graph_objects as go
+
+st.set_page_config(
+    page_title="GHG Emissions Dashboard",  # <-- This is what appears in the browser tab
+    page_icon="🌍",                        # Optional: adds an icon to the tab
+    layout="wide"                         # Optional: use "wide" layout if you prefer
+)
+
+import pandas as pd
+
+import plotly.express as px
+
+
 
 # Hashed password generated from helper script
 hashed_passwords = [
@@ -47,8 +57,9 @@ if st.session_state["authentication_status"]:
     # Filter data
     filtered_df = df[(df['Year'] == year) & (df['Catégorie Bilan Carbone'].isin(category))]
 
-    # Create Tabs
-    tab1, tab2 = st.tabs(["📊 Dashboard", "📁 Raw Data & Extra Insights"])
+    # 🔥 Create Tabs
+    tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "📁 Raw Data & Extra Insights", "➕ Add Your Data"])
+
 
     # TAB 1 - Main Dashboard
     with tab1:
@@ -111,7 +122,35 @@ if st.session_state["authentication_status"]:
         st.subheader("Decarbonization Actions (All Years)")
         st.dataframe(actions_df)
 
-    
+    # 🔥 TAB 3 - Data Entry
+    with tab3:
+        st.title("Add Your Activity Data")
+
+        st.markdown("Fill in the details of your activity to estimate GHG emissions:")
+
+    activity_type = st.selectbox("Activity Type", ["Travel (km)", "Electricity (kWh)", "Expenses (€)"])
+    value = st.number_input("Enter the value", min_value=0.0, step=1.0)
+
+    # Example emission factors (you can replace these with your real ones)
+    emission_factors = {
+        "Travel (km)": 0.15,         # kg CO2e per km
+        "Electricity (kWh)": 0.05,   # kg CO2e per kWh (adjust to local EF)
+        "Expenses (€)": 0.25         # kg CO2e per €
+    }
+
+    if st.button("Calculate Emissions"):
+        emissions = value * emission_factors[activity_type]
+        st.success(f"Estimated emissions: **{round(emissions, 2)} kgCO₂e** for your {activity_type.lower()}")
+
+        st.markdown("---")
+        st.subheader("Details")
+        st.write({
+            "Activity": activity_type,
+            "Value": value,
+            "Emission Factor (kgCO₂e/unit)": emission_factors[activity_type],
+            "Estimated Emissions (kgCO₂e)": emissions
+        })
+
 
 elif st.session_state["authentication_status"] is False:
     st.error("Username or password is incorrect")
